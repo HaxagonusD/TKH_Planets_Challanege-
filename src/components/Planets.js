@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PlanetDetails from "./PlanetDetails";
 import Loading from "./Loading";
 import "../styles/Planets.css";
-export default ({ response }) => {
-  if (response === undefined) return <Loading />;
+import { getPlanets } from "../services/getPlanets";
 
-  return (
+export default ({setCurrentPlanet}) => {
+  const [response, setPlanets] = useState(undefined);
+
+  useEffect(() => {
+    (async () => {
+      setPlanets(await getPlanets());
+    })();
+  }, []);
+
+  return response === undefined ? (
+    <Loading />
+  ) : (
     <div className="list">
       {response.data.planets.map((planet) => {
-        return <PlanetDetails planet={planet} key={planet.id}></PlanetDetails>;
+        return <PlanetDetails setCurrentPlanet={setCurrentPlanet} planet={planet} key={planet.id}></PlanetDetails>;
       })}
     </div>
   );
 };
+
+

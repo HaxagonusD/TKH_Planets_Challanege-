@@ -1,5 +1,5 @@
 //library imports
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 //Custom components
 import Planets from "./components/Planets";
@@ -7,19 +7,12 @@ import Home from "./components/Home";
 import ErrorComponent from "./components/ErrorComponent";
 import RandomPlanet from "./components/RandomPlanet";
 import NavBar from "./components/NavBar";
-//services
-import { getPlanets } from "./services/getPlanets";
+import SpecificPlanet from "./components/SpecificPlanet";
 //css
 import "./App.css";
 
 function App() {
-  const [response, setPlanets] = useState(undefined);
-
-  useEffect(() => {
-    (async () => {
-      setPlanets(await getPlanets());
-    })();
-  }, []);
+  const [currentPlanet, setCurrentPlanet] = useState(undefined);
 
   return (
     <div className="App">
@@ -29,10 +22,13 @@ function App() {
           <Home />
         </Route>
         <Route exact path="/planets">
-          <Planets response={response}></Planets>
+          <Planets setCurrentPlanet={setCurrentPlanet}></Planets>
         </Route>
         <Route exact path="/planets/random">
-          <RandomPlanet />
+          <RandomPlanet setCurrentPlanet={setCurrentPlanet} />
+        </Route>
+        <Route exact path="/specific">
+          <SpecificPlanet currentPlanet={currentPlanet} />
         </Route>
         <Route>
           {" "}

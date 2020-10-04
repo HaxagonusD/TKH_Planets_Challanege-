@@ -10,6 +10,10 @@ const Home = () => {
       <p>Home links to this page</p>
       <p>Planets links to the list of all the planets</p>
       <p>Random Planet links to a singular potentially random planet</p>
+      <p>
+        Every planet name is a link that goes to a page that only shows that
+        planet
+      </p>
     </div>
   );
 };
