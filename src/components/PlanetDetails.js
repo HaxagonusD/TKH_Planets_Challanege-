@@ -1,18 +1,21 @@
 import React from "react";
-import Loading from "./Loading"
+import Loading from "./Loading";
+import "../styles/PlanetDetails.css";
 
 const PlanetDetails = ({ planet }) => {
   return planet === undefined ? (
     <Loading />
   ) : (
-    <div>
+    <div className="planetdetails">
       {/* name:
             num_moons:
             color:
         */}
-      <h1>{planet.name}</h1>
-      <p>{planet.num_moons}</p>
-      <p>{planet.color}</p>
+      <h1> {planet.name}</h1>
+      <div className="text">
+        <p>Number of moons: {planet.num_moons}</p>
+        <p>color: {planet.color}</p>
+      </div>
     </div>
   );
 };

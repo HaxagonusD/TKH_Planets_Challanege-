@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PlanetDetails from "./PlanetDetails";
 import { getRandomPlanet } from "../services/getPlanets";
 import Loading from "./Loading";
+import "../styles/RandomPlanet.css";
 
 const RandomPlanet = () => {
   const [randomPlanet, setRandomPlanet] = useState(undefined);
@@ -14,7 +15,7 @@ const RandomPlanet = () => {
   return randomPlanet === undefined ? (
     <Loading />
   ) : (
-    <div>
+    <div className="random-planet">
       <PlanetDetails planet={randomPlanet.data.planet}></PlanetDetails>
     </div>
   );
