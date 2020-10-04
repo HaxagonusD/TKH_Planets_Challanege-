@@ -1,12 +1,15 @@
 import React from "react";
-import PlanetDetails from "./PlanetDetails"
+import PlanetDetails from "./PlanetDetails";
+import Loading from "./Loading";
 
-export default ({response}) => {
-  if(response  === undefined) return <div><h1>Loading Planet List...</h1></div>;
-  const  planetList = response.data.planets;
+export default ({ response }) => {
+  if (response === undefined) return <Loading />;
+
   return (
     <div>
-      {planetList.map((planet)=>{return <PlanetDetails planet={planet} key={planet.id}></PlanetDetails>})}
+      {response.data.planets.map((planet) => {
+        return <PlanetDetails planet={planet} key={planet.id}></PlanetDetails>;
+      })}
     </div>
   );
 };
